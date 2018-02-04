@@ -1,6 +1,9 @@
 (function (root) {
     var WATER = root.SHRI_ISLANDS.WATER;
     var ISLAND = root.SHRI_ISLANDS.ISLAND;
+  	var VISITED_WATER = root.SHRI_ISLANDS.VISITED_WATER;
+    var VISITED_ISLAND =  root.SHRI_ISLANDS.VISITED_ISLAND;
+    var FIND_ISLAND = root.SHRI_ISLANDS.FIND_ISLAND;
 
     /**
      * Создает HTML элемент заданного типа с заданным CSS классом
@@ -52,6 +55,18 @@
                     case ISLAND:
                         type = 'island';
                         break;
+
+                    case VISITED_WATER:
+	                    type = 'visited_water';
+	                    break;
+
+                    case VISITED_ISLAND:
+	                    type = 'visited_island';
+	                    break;
+
+                    case FIND_ISLAND:
+	                    type = 'find_island';
+	                    break;
 
                     default:
                         type = undefined;

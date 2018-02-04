@@ -6,6 +6,7 @@ body {
 .map {
     padding: 10px;
     margin: 0;
+	display: inline-block;
 }
 
 .map__res {
@@ -36,7 +37,15 @@ body {
     background-color: #65a6ff;
 }
 
-.map__cell_ok{
+.map__cell_visited_water{
+    background-color: #0000ff;
+}
+
+.map__cell_visited_island{
+    background-color: #ffa500;
+}
+
+.map__cell_find_island{
     background-color: #00ff00;
 }
 
