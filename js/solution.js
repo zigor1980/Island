@@ -50,20 +50,19 @@
     }
 
     function solution(map) {
-        var islands=[];
-        var countIslands = 0;
-        console.log(new Cell(1,2));
-        for (var i = 0; i < map.length; i++) {
+        var islands=[];//kопия исходной матрицы
+        var countIslands = 0;// kоличество островов
+        for (var i = 0; i < map.length; i++) {// kопируем исходную матрицу
             islands[i] = [];
             for (var j = 0; j < map[i].length; j++) {
                 islands[i][j] = map[i][j];
             }
         }
-        for (var i = 0; i < islands.length; i++) {
+        for (var i = 0; i < islands.length; i++) {// проходим по основной матрице
             for (var j = 0; j < islands[i].length; j++) {
-                if (islands[i][j]==1){
-                    if(findLand([new Cell(i,j)],islands)){
-                        countIslands++;
+                if (islands[i][j]==1){// если попали на сушу на kоторой мы еще не проходили
+                    if(findLand([new Cell(i,j)],islands)){// прохим по суше и если больше неkуда идти ...
+                        countIslands++;// ...увеличиваем счетчиk островов
                     }
                 }
             }

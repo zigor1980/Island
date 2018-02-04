@@ -8,8 +8,23 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+	<table class="history">
+		<th colspan="2">История kарты</th>
+		<tr>
+			<td><div class="map__cell map__cell_visited_water"></div></td>
+			<td>Пройденные поля с водой</td>
+		</tr>
+		<tr>
+			<td><div class="map__cell map__cell_find_island"></div></td>
+			<td>Пройденные поля с сушей</td>
+		</tr>
+		<tr>
+			<td><div class="map__cell map__cell_visited_island"></div></td>
+			<td>Поля с сушей, на kоторые мы можем пойти</td>
+		</tr>
+
+	</div>
     <div class="outer"></div>
-	<div class="visualize_outer"></div>
     <script src="js/consts.js"></script>
     <script src="js/render.js"></script>
     <script src="js/visualizeSolution.js"></script>

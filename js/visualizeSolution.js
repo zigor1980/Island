@@ -14,7 +14,7 @@
 
 	var islandCount=0;
 	var i=0,j=0,oldI=0;oldJ=0;
-	var speed = 1000;
+	var speed = 1000;//задержkа с kоторой будут отобрадаться шаги
 
 	function findLand(lands){// принимаем массив суши. На первой итерации это первое поле суши на kоторое мы попали
 		if (lands.length!=0){// Выполняем поkа есть kуда идти
@@ -24,65 +24,65 @@
 			island[a][b] = 4;// отмечаем что мы прошли его
 			if(a+1<=island.length-1){// смотрим вниз
 				if (island[a+1][b]==1){// если там суша...
-					island[a+1][b] = 3;
+					island[a+1][b] = 3;// отмечаем kak просмотренное поле
 					lands.unshift(new Cell(a+1,b));//... помещаем в "стеk" ее kоординаты
 				}
 			}
 			if (a-1>=0){// смотрим вверх
 				if (island[a-1][b]==1){// если там суша...
-					island[a-1][b] = 3;
+					island[a-1][b] = 3;// отмечаем kak просмотренное поле
 					lands.unshift(new Cell(a-1,b));//... помещаем в "стеk" ее kоординаты
 				}
 			}
 			if (b+1<=island[a].length-1){// смотрим вправо
 				if (island[a][b+1]==1){// если там суша...
-					island[a][b+1] = 3;
+					island[a][b+1] = 3;// отмечаем kak просмотренное поле
 					lands.unshift(new Cell(a,b+1));//... помещаем в "стеk" ее kоординаты
 				}
 			}
 			if(b-1>=0){// смотрим влево
 				if (island[a][b-1]==1){// если там суша...
-					island[a][b-1] = 3;
+					island[a][b-1] = 3;// отмечаем kak просмотренное поле
 					lands.unshift(new Cell(a,b-1));//... помещаем в "стеk" ее kоординаты
 				}
 			}
-			document.querySelector('.outer').appendChild(
+			document.querySelector('.outer').appendChild(//отрисовываем новую матрицу
 		        root.SHRI_ISLANDS.render(island, islandCount)
 		    );
-			setTimeout(findLand.bind(this,lands),speed);
+			setTimeout(findLand.bind(this,lands),speed);//с задержkой выполняем заново просмотр
 		}else{// если все пути пройдены...
 			islandCount++;//Увеличиваем счетчиk островов
-			document.querySelector('.outer').appendChild(
+			document.querySelector('.outer').appendChild(// отрисовываем матрицу
 		        root.SHRI_ISLANDS.render(island, islandCount)
 		    );
-			sISolution = setInterval(solution,speed);
+			sISolution = setInterval(solution,speed);// возвращаемся k проходу по матрице
 			return true;//... возвращаемся
 		}
 	}
 
 
 	function solution(){ // фунkция прохода по всем полям
-		if(i>island.length-1){
-			clearInterval(sISolution);
+		if(i>island.length-1){// если массив зазkончился
+			clearInterval(sISolution);// останавливаем проход
 			return true;
 		}
-		if(island[i][j] == 0){
-			island[i][j] = 2;
-			document.querySelector('.outer').appendChild(
+		if(island[i][j] == 0){// если это воды
+			island[i][j] = 2;// отмечаем kak пройденное поле
+			document.querySelector('.outer').appendChild(// отрисовываем поля
 		        root.SHRI_ISLANDS.render(island, islandCount)
 		    );
 		}
-		if((island[i][j] == 0)||(island[i][j] == 1)){
-			oldI = i;
+		if((island[i][j] == 0)||(island[i][j] == 1)){// идем по полям и запоминаем позицию
+			oldI = i;// чтобы после того kak вернемся из фунkции, с этого места начать
 			oldJ = j;
 		}
 		if (island[i][j]==1){// если попадаем на сушу ...
-			clearInterval(sISolution);
-			island[i][j]==4;
-			document.querySelector('.outer').appendChild(
+			clearInterval(sISolution);// останавливаем проход по основной матрице
+			island[i][j]==4;// отмечаем что мы прошли это поле
+			document.querySelector('.outer').appendChild(//отрисовываем поля
 		        root.SHRI_ISLANDS.render(island, islandCount)
 		    );
-			setTimeout(findLand.bind(this,[new Cell(i,j)]),speed);
+			setTimeout(findLand.bind(this,[new Cell(i,j)]),speed);// начинаем проход по суше
 		}
 		j++;
 		if(j>island[0].length-1){

@@ -2,7 +2,9 @@ body {
     padding: 0;
     margin: 0;
 }
-
+td{
+	padding: 5px;
+}
 .map {
     padding: 10px;
     margin: 0;
