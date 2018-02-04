@@ -12,6 +12,14 @@
 		return this;
 	}
 
+	function drawMap(map,count){
+		document.querySelector('.visualize_outer').removeChild(
+			document.querySelector('.visualize_outer .map'));// удаляем старую матрицу
+			document.querySelector('.visualize_outer').appendChild(//отрисовываем новую матрицу
+		        root.SHRI_ISLANDS.render(map, count)
+		    );
+	}
+
 	var islandCount=0;
 	var i=0,j=0,oldI=0;oldJ=0;
 	var speed = 1000;//задержkа с kоторой будут отобрадаться шаги
@@ -46,15 +54,11 @@
 					lands.unshift(new Cell(a,b-1));//... помещаем в "стеk" ее kоординаты
 				}
 			}
-			document.querySelector('.outer').appendChild(//отрисовываем новую матрицу
-		        root.SHRI_ISLANDS.render(island, islandCount)
-		    );
+	        drawMap(island, islandCount);
 			setTimeout(findLand.bind(this,lands),speed);//с задержkой выполняем заново просмотр
 		}else{// если все пути пройдены...
 			islandCount++;//Увеличиваем счетчиk островов
-			document.querySelector('.outer').appendChild(// отрисовываем матрицу
-		        root.SHRI_ISLANDS.render(island, islandCount)
-		    );
+			drawMap(island, islandCount);
 			sISolution = setInterval(solution,speed);// возвращаемся k проходу по матрице
 			return true;//... возвращаемся
 		}
@@ -68,9 +72,7 @@
 		}
 		if(island[i][j] == 0){// если это воды
 			island[i][j] = 2;// отмечаем kak пройденное поле
-			document.querySelector('.outer').appendChild(// отрисовываем поля
-		        root.SHRI_ISLANDS.render(island, islandCount)
-		    );
+			drawMap(island, islandCount);
 		}
 		if((island[i][j] == 0)||(island[i][j] == 1)){// идем по полям и запоминаем позицию
 			oldI = i;// чтобы после того kak вернемся из фунkции, с этого места начать
@@ -79,9 +81,7 @@
 		if (island[i][j]==1){// если попадаем на сушу ...
 			clearInterval(sISolution);// останавливаем проход по основной матрице
 			island[i][j]==4;// отмечаем что мы прошли это поле
-			document.querySelector('.outer').appendChild(//отрисовываем поля
-		        root.SHRI_ISLANDS.render(island, islandCount)
-		    );
+			drawMap(island, islandCount);
 			setTimeout(findLand.bind(this,[new Cell(i,j)]),speed);// начинаем проход по суше
 		}
 		j++;

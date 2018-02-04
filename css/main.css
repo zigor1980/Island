@@ -8,7 +8,7 @@ td{
 .map {
     padding: 10px;
     margin: 0;
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 .map__res {
